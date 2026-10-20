@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARYA'S INDIA - Royal Logistics & Express Services</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-primary: #050B18;
+            --bg-card: #0A1329;
+            --bg-card-hover: #0F1C3D;
+            --accent-gold: #D4AF37;
+            --accent-gold-light: #F3E5AB;
+            --accent-gold-dark: #AA7C11;
+            --text-light: #F0F4F8;
+            --text-muted: #8E9BAE;
+            --border-gold: rgba(212, 175, 55, 0.35);
+            --border-gold-bright: #D4AF37;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Damask Pattern Overlay */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: radial-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Typography */
+        h1, h2, h3, .royal-font {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.5px;
+        }
+
+        /* Header Navigation Bar */
+        .top-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5, 11, 24, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo i {
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+        }
+
+        .brand-logo-text {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .portal-switch-btn {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
+            color: #000;
+            padding: 8px 18px;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .portal-switch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Container Layout */
+        .app-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Hero Banner Section */
+        .hero-section {
+            background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.12), transparent 50%), var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            padding: 50px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(45deg, transparent, var(--accent-gold), transparent);
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .flag-icon {
+            width: 45px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .hero-tagline {
+            font-size: 1.15rem;
+            color: var(--accent-gold-light);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .hero-subtext {
+            max-width: 750px;
+            margin: 0 auto 30px;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Widget Card Layouts */
+        .widgets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            border-color: var(--border-gold-bright);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            padding-bottom: 12px;
+        }
+
+        .card-header i {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        /* Forms Styling */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(5, 11, 24, 0.7);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-md);
+            color: var(--text-light);
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-input:focus, .form-select:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-gold {
+            width: 100%;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
+            border: none;
+            border-radius: var(--radius-md);
+            color: #000;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-gold:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Services Grid */
+        .services-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-md);
+            padding: 22px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-50px);
+            background: var(--bg-card-hover);
+        }
+
+        .service-card i {
+            font-size: 2.2rem;
+            color: var(--accent-gold);
+            margin-bottom: 14px;
+        }
+
+        .service-card h4 {
+            color: var(--text-light);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        /* Features List */
+        .features-row {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: var(--accent-gold-light);
+        }
+
+        .feature-item i {
+            color: var(--accent-gold);
+            font-size: 1.3rem;
+        }
+
+        /* Owner / Admin Modal & Dashboard */
+        .admin-view {
+            display: none;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .orders-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-gold);
+        }
+
+        .orders-table th, .orders-table td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            font-size: 0.9rem;
+        }
+
+        .orders-table th {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .badge-pending { background: rgba(245, 158, 11, 0.2); color: var(--warning); border: 1px solid var(--warning); }
+        .badge-transit { background: rgba(16, 185, 129, 0.2); color: var(--success); border: 1px solid var(--success); }
+        .badge-delivered { background: rgba(59, 130, 246, 0.2); color: #3B82F6; border: 1px solid #3B82F6; }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 32px;
+            box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold-bright);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 420px;
+            padding: 30px;
+            position: relative;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 15px;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .site-footer {
+            border-top: 1px solid var(--border-gold);
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 50px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        .footer-contacts {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            color: var(--accent-gold-light);
+        }
+
+        .footer-contacts a {
+            color: var(--accent-gold-light);
+            text-decoration: none;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .top-navbar { padding: 10px 15px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-pattern"></div>
+
+    <!-- Top Navigation -->
+    <nav class="top-navbar">
+        <a href="#" class="brand-logo">
+            <i class="fa-solid fa-crown"></i>
+            <span class="brand-logo-text royal-font">Arya's India</span>
+        </a>
+        <div class="nav-links">
+            <a href="#tracking" class="nav-link">Tracking</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#booking" class="nav-link">Book Now</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <button class="portal-switch-btn" id="portalToggleBtn" onclick="openLoginModal()">
+            <i class="fa-solid fa-lock"></i>
+            <span id="portalBtnText">Owner Portal</span>
+        </button>
+    </nav>
+
+    <div class="app-container">
+
+        <!-- ================= CUSTOMER PORTAL ================= -->
+        <div id="customerPortal">
+            
+            <!-- Hero Banner -->
+            <section class="hero-section">
+                <!-- SVG Flag Placeholder -->
+                <svg class="flag-icon" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#f93" d="0 0h640v160H0z"/>
+                    <path fill="#fff" d="0 160h640v160H0z"/>
+                    <path fill="#128807" d="0 320h640v160H0z"/>
+                    <circle cx="320" cy="240" r="60" fill="none" stroke="#000080" stroke-width="8"/>
+                </svg>
+                <h1 class="hero-title">Arya's India</h1>
+                <div class="hero-tagline">Complete Logistics Under One Roof</div>
+                <p class="hero-subtext">Whether it's household goods or business cargo, we deliver your belongings safely and on-time across domestic and international locations.</p>
+            </section>
+
+            <!-- Features Bar -->
+            <div class="features-row">
+                <div class="feature-item"><i class="fa-solid fa-shield-halved"></i> ZERO RISK</div>
+                <div class="feature-item"><i class="fa-solid fa-lock"></i> HIGH SAFETY</div>
+                <div class="feature-item"><i class="fa-solid fa-clock"></i> ON-TIME DELIVERY</div>
+            </div>
+
+            <!-- Interactive Widgets -->
+            <div class="widgets-grid" id="tracking">
+                
+                <!-- Shipment Tracking Widget -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <h3 class="card-title">Live Shipment Tracking</h3>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Enter Tracking ID</label>
+                        <input type="text" id="trackInput" class="form-input" placeholder="e.g., AI-1002">
+                    </div>
+                    <button class="btn-gold" onclick="trackShipment()">
+                        <i class="fa-solid fa-magnifying-glass"></i> Track Package
+                    </button>
+                    <div id="trackResult" style="margin-top: 15px;"></div>
+                </div>
+
+                <!-- Shipping Rate Estimator Widget -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-calculator"></i>
+                        <h3 class="card-title">Freight Rate Estimator</h3>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Destination Type</label>
+                        <select id="rateType" class="form-select">
+                            <option value="50">Domestic Shipping</option>
+                            <option value="150">International Shipping</option>
+                            <option value="80">Relocation / Express</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Weight (in Kg)</label>
+                        <input type="number" id="rateWeight" class="form-input" placeholder="e.g., 10" min="1" value="5">
+                    </div>
+                    <button class="btn-gold" onclick="calculateRate()">
+                        <i class="fa-solid fa-coins"></i> Calculate Estimate
+                    </button>
+                    <div id="rateResult" style="margin-top: 15px; font-weight:700; color:var(--accent-gold);"></div>
+                </div>
+
+            </div>
+
+            <!-- Booking Section -->
+            <div class="card" id="booking" style="margin-bottom: 40px;">
+                <div class="card-header">
+                    <i class="fa-solid fa-boxes-packing"></i>
+                    <h3 class="card-title">Book a Shipment</h3>
+                </div>
+                <form id="bookingForm" onsubmit="handleBooking(event)">
+                    <div class="widgets-grid" style="margin-bottom:0;">
+                        <div class="form-group">
+                            <label class="form-label">Sender Name</label>
+                            <input type="text" id="senderName" class="form-input" required placeholder="Your Full Name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Contact Number</label>
+                            <input type="tel" id="senderPhone" class="form-input" required placeholder="Your Mobile Number">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Service Type</label>
+                            <select id="serviceSelect" class="form-select">
+                                <option>Domestic & International Shipping</option>
+                                <option>Home & Office Relocation</option>
+                                <option>Express Delivery</option>
+                                <option>Hand Carry Services</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Pickup & Delivery Addresses</label>
+                            <input type="text" id="shipAddress" class="form-input" required placeholder="Origin & Destination">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-gold" style="margin-top: 15px;">
+                        <i class="fa-solid fa-paper-plane"></i> Submit Booking Request
+                    </button>
+                </form>
+                <div id="bookingSuccess" style="margin-top: 15px;"></div>
+            </div>
+
+            <!-- Services Overview Section -->
+            <section class="services-section" id="services">
+                <h2 class="section-title">Our Premium Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <h4>Domestic Shipping</h4>
+                        <p>Fast and secure door-to-door transportation across India.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fa-solid fa-plane-departure"></i>
+                        <h4>International Freight</h4>
+                        <p>Seamless global air and ocean cargo courier solutions.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fa-solid fa-house-chimney"></i>
+                        <h4>Home Relocation</h4>
+                        <p>Expert packing and safe moving for household belongings.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <h4>Office Relocation</h4>
+                        <p>Minimized downtime commercial equipment transportation.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ================= OWNER / ADMIN PORTAL ================= -->
+        <div id="ownerPortal" class="admin-view">
+            
+            <div class="admin-header">
+                <div>
+                    <h2 class="royal-font" style="color:var(--accent-gold);">Owner Management Dashboard</h2>
+                    <p style="color:var(--text-muted); font-size:0.9rem;">Logistics Operations Control Panel</p>
+                </div>
+                <button class="portal-switch-btn" onclick="logoutAdmin()">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header" style="justify-content: space-between;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <i class="fa-solid fa-list-check"></i>
+                        <h3 class="card-title">Real-Time Customer Orders</h3>
+                    </div>
+                    <span id="orderCountBadge" class="badge badge-transit">0 Orders</span>
+                </div>
+
+                <div class="orders-table-wrapper">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Tracking ID</th>
+                                <th>Customer Name</th>
+                                <th>Phone</th>
+                                <th>Service</th>
+                                <th>Route / Address</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <!-- Dynamic Content Inserted Here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Floating WhatsApp Support Button -->
+    <a href="https://wa.me/919205852854?text=Hello%20Arya's%20India,%20I%20need%20assistance%20with%20a%20shipment." class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Admin Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-card">
+            <span class="modal-close" onclick="closeLoginModal()"><i class="fa-solid fa-xmark"></i></span>
+            <div class="card-header" style="justify-content: center; border:none; padding:0; margin-bottom:15px;">
+                <i class="fa-solid fa-user-shield" style="font-size: 2.2rem;"></i>
+            </div>
+            <h3 class="royal-font" style="text-align:center; color:var(--accent-gold); margin-bottom: 20px;">Owner Portal Login</h3>
+            
+            <form onsubmit="handleAdminLogin(event)">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="adminEmail" class="form-input" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="adminPassword" class="form-input" placeholder="Enter password" required>
+                </div>
+                <div id="loginError" style="color:var(--danger); font-size:0.85rem; margin-bottom:10px;"></div>
+                <button type="submit" class="btn-gold">
+                    <i class="fa-solid fa-key"></i> Access Dashboard
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="site-footer" id="contact">
+        <div class="footer-contacts">
+            <div><i class="fa-solid fa-phone"></i> Call / WhatsApp: +91 9205852854</div>
+            <div><i class="fa-solid fa-envelope"></i> Support: <a href="mailto:aryasindia.support@gmail.com">aryasindia.support@gmail.com</a></div>
+        </div>
+        <p>&copy; 2026 ARYA'S INDIA. All Rights Reserved. Complete Logistics Solutions.</p>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Preset Credentials & Data
+        const ADMIN_CREDENTIALS = {
+            email: "aryasindia01@gmail.com",
+            password: "Arya.logistics@1986.01"
+        };
+
+        // Initialize Local Storage for Orders
+        if (!localStorage.getItem('aryas_orders')) {
+            localStorage.setItem('aryas_orders', JSON.stringify([]));
+        }
+
+        // Global State
+        let isAdminLoggedIn = false;
+
+        // UI View Toggle Handlers
+        function openLoginModal() {
+            if (isAdminLoggedIn) {
+                showOwnerPortal();
+            } else {
+                document.getElementById('loginModal').classList.add('active');
+            }
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+            document.getElementById('loginError').innerText = '';
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('adminEmail').value.trim();
+            const passInput = document.getElementById('adminPassword').value.trim();
+
+            if (emailInput === ADMIN_CREDENTIALS.email && passInput === ADMIN_CREDENTIALS.password) {
+                isAdminLoggedIn = true;
+                closeLoginModal();
+                showOwnerPortal();
+                document.getElementById('portalBtnText').innerText = "Dashboard Active";
+            } else {
+                document.getElementById('loginError').innerText = "Invalid Admin Email or Password!";
+            }
+        }
+
+        function showOwnerPortal() {
+            document.getElementById('customerPortal').style.display = 'none';
+            document.getElementById('ownerPortal').style.display = 'block';
+            renderAdminOrders();
+        }
+
+        function logoutAdmin() {
+            isAdminLoggedIn = false;
+            document.getElementById('customerPortal').style.display = 'block';
+            document.getElementById('ownerPortal').style.display = 'none';
+            document.getElementById('portalBtnText').innerText = "Owner Portal";
+        }
+
+        // Customer Feature: Tracking
+        function trackShipment() {
+            const trackId = document.getElementById('trackInput').value.trim().toUpperCase();
+            const resultDiv = document.getElementById('trackResult');
+            const orders = JSON.parse(localStorage.getItem('aryas_orders')) || [];
+
+            if (!trackId) {
+                resultDiv.innerHTML = `<span style="color:var(--danger)">Please enter a valid Tracking ID.</span>`;
+                return;
+            }
+
+            const foundOrder = orders.find(o => o.id === trackId);
+
+            if (foundOrder) {
+                resultDiv.innerHTML = `
+                    <div style="background:rgba(212, 175, 55, 0.1); border:1px solid var(--border-gold); padding:12px; border-radius:8px;">
+                        <div><strong>Status:</strong> <span class="badge badge-${foundOrder.status === 'Delivered' ? 'delivered' : foundOrder.status === 'In Transit' ? 'transit' : 'pending'}">${foundOrder.status}</span></div>
+                        <div style="margin-top:6px;"><strong>Customer:</strong> ${foundOrder.name}</div>
+                        <div><strong>Service:</strong> ${foundOrder.service}</div>
+                        <div><strong>Route:</strong> ${foundOrder.address}</div>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `<span style="color:var(--warning)">Tracking ID "${trackId}" not found in system.</span>`;
+            }
+        }
+
+        // Customer Feature: Rate Calculator
+        function calculateRate() {
+            const baseRate = parseFloat(document.getElementById('rateType').value);
+            const weight = parseFloat(document.getElementById('rateWeight').value) || 1;
+            const totalCost = baseRate * weight + 200; // Base rate multiplier + handling fee
+
+            document.getElementById('rateResult').innerText = `Estimated Rate: ₹${totalCost.toLocaleString('en-IN')}`;
+        }
+
+        // Customer Feature: Booking Handler
+        function handleBooking(e) {
+            e.preventDefault();
+            const name = document.getElementById('senderName').value;
+            const phone = document.getElementById('senderPhone').value;
+            const service = document.getElementById('serviceSelect').value;
+            const address = document.getElementById('shipAddress').value;
+
+            const trackingId = 'AI-' + Math.floor(1000 + Math.random() * 9000);
+
+            const newOrder = {
+                id: trackingId,
+                name: name,
+                phone: phone,
+                service: service,
+                address: address,
+                status: 'Pending'
+            };
+
+            const orders = JSON.parse(localStorage.getItem('aryas_orders')) || [];
+            orders.unshift(newOrder);
+            localStorage.setItem('aryas_orders', JSON.stringify(orders));
+
+            document.getElementById('bookingForm').reset();
+            document.getElementById('bookingSuccess').innerHTML = `
+                <div style="background:rgba(16, 185, 129, 0.15); border:1px solid var(--success); color:var(--success); padding:12px; border-radius:8px;">
+                    <i class="fa-solid fa-circle-check"></i> Booking Confirmed! Your Tracking ID is <strong>${trackingId}</strong>
+                </div>
+            `;
+        }
+
+        // Admin Feature: Render Orders
+        function renderAdminOrders() {
+            const orders = JSON.parse(localStorage.getItem('aryas_orders')) || [];
+            const tbody = document.getElementById('ordersTableBody');
+            document.getElementById('orderCountBadge').innerText = `${orders.length} Orders`;
+
+            if (orders.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--text-muted);">No customer orders placed yet.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = orders.map((o, idx) => `
+                <tr>
+                    <td style="font-weight:700; color:var(--accent-gold);">${o.id}</td>
+                    <td>${o.name}</td>
+                    <td>${o.phone}</td>
+                    <td>${o.service}</td>
+                    <td>${o.address}</td>
+                    <td>
+                        <select onchange="updateOrderStatus(${idx}, this.value)" class="form-select" style="padding:4px 8px; font-size:0.8rem;">
+                            <option value="Pending" ${o.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="In Transit" ${o.status === 'In Transit' ? 'selected' : ''}>In Transit</option>
+                            <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button onclick="deleteOrder(${idx})" style="background:none; border:none; color:var(--danger); cursor:pointer;">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function updateOrderStatus(index, newStatus) {
+            const orders = JSON.parse(localStorage.getItem('aryas_orders'));
+            orders[index].status = newStatus;
+            localStorage.setItem('aryas_orders', JSON.stringify(orders));
+            renderAdminOrders();
+        }
+
+        function deleteOrder(index) {
+            const orders = JSON.parse(localStorage.getItem('aryas_orders'));
+            orders.splice(index, 1);
+            localStorage.setItem('aryas_orders', JSON.stringify(orders));
+            renderAdminOrders();
+        }
+    </script>
+</body>
+</html>
